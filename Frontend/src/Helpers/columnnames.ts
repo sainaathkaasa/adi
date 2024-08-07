@@ -1,0 +1,6 @@
+export const week_start_date = 'week_Start_Date'
+export const qty = 'qty'
+export const productcode = 'productCode'
+export const cfacode = 'cfacode'
+export const predicted_qty = 'predicted_qty'
+export const category = 'category'

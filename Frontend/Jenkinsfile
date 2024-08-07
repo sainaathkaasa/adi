@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'node:20-alpine'
+                }
+            }
+            steps {
+                script {
+                    // Print environment details for debugging
+                    sh '''
+                        echo "Listing directory contents:"
+                        ls -la
+                        echo "Node version:"
+                        node --version
+                        echo "NPM version:"
+                        npm --version
+                    '''
+                    
+                    // Clean npm cache and install dependencies
+                    sh '''
+                        echo "Cleaning npm cache:"
+                        npm cache clean --force
+                        echo "Installing dependencies:"
+                        npm ci
+                    '''
+                    
+                    // Run the build process with Vite
+                    sh '''
+                        echo "Building project:"
+                        npm run build
+                    '''
+                    
+                    // Check build output
+                    sh '''
+                        echo "Listing directory contents after build:"
+                        ls -la
+                    '''
+                }
+            }
+        }
+
+        stage('Test') {
+            agent {
+                docker {
+                    image 'node:20-alpine'
+                }
+            }
+            steps {
+                sh '''
+                    if [ -f build/index.html ]; then
+                        echo "File build/index.html exists."
+                    else
+                        echo "File build/index.html does not exist."
+                        exit 1
+                    fi
+                    echo "Running tests:"
+                    npm test
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}

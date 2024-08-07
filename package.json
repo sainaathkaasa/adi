@@ -1,0 +1,15 @@
+{
+  "name": "demand-forcasting",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd frontend && npm install && npm run dev",
+    "start:backend": "cd backend && mvnw.cmd spring-boot:run"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "demand-forcasting": "file:"
+  }
+}
