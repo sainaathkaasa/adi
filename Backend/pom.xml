@@ -51,6 +51,13 @@
 		    <artifactId>mssql-jdbc</artifactId>
 		    <version>9.4.1.jre8</version>
 		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+
 
 	</dependencies>
 

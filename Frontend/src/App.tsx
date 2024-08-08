@@ -31,7 +31,7 @@ const App: React.FC = () => {
         const response = await axios.get<{
           start: number;
           data: DataItem[];
-        }>(`http://192.168.1.12:8081/data/range?startId=${start}&endId=${end}`);
+        }>(`http://10.64.36.13:8081/data/range?startId=${start}&endId=${end}`);
         const newData = response.data;
 
         if (newData.length > 0) {
