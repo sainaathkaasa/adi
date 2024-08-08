@@ -1,13 +1,12 @@
 package com.Himalaya.Backend.Test;
 
-import org.testng.annotations.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.annotations.Test;
 
 @SpringBootTest
-class BackendApplicationTests {
+public class BackendApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
-
 }
